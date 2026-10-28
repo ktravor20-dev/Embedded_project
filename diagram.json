@@ -1,3 +1,4 @@
+
 {
   "version": 1,
   "author": "Smart CoCIS Team",
@@ -6,11 +7,153 @@
     {
       "type": "board-esp32-s3-devkitc-1",
       "id": "esp32",
-      "top": 0,
-      "left": 0,
+      "top": 200,
+      "left": 450,
+      "attrs": {}
+    },
+    {
+      "type": "board-mfrc522",
+      "id": "rfidEntry",
+      "top": -130,
+      "left": -420,
+      "attrs": { "uid": "01:02:03:04" }
+    },
+    {
+      "type": "board-mfrc522",
+      "id": "rfidExit",
+      "top": 240,
+      "left": -420,
+      "attrs": { "uid": "11:22:33:44" }
+    },
+    {
+      "type": "wokwi-servo",
+      "id": "doorServo",
+      "top": 570,
+      "left": -420,
+      "attrs": { "horn": "single" }
+    },
+    {
+      "type": "wokwi-pir-motion-sensor",
+      "id": "pirRoom1",
+      "top": -450,
+      "left": 350,
+      "attrs": { "delayTime": "5" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "lightRoom1",
+      "top": -450,
+      "left": 680,
+      "attrs": {
+        "color": "yellow",
+        "label": "ROOM 1 LIGHT"
+      }
+    },
+    {
+      "type": "wokwi-pir-motion-sensor",
+      "id": "pirRoom2",
+      "top": 100,
+      "left": 1130,
+      "attrs": { "delayTime": "5" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "lightRoom2",
+      "top": 400,
+      "left": 1130,
+      "attrs": {
+        "color": "yellow",
+        "label": "ROOM 2 LIGHT"
+      }
+    },
+    {
+      "type": "wokwi-microsd-card",
+      "id": "sdcard",
+      "top": 900,
+      "left": -250,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-lcd1602",
+      "id": "lcd",
+      "top": 880,
+      "left": 350,
+      "attrs": {
+        "pins": "i2c",
+        "i2cAddress": "0x27"
+      }
+    },
+    {
+      "type": "wokwi-membrane-keypad",
+      "id": "keypad",
+      "top": 880,
+      "left": 900,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "buzzer",
+      "top": 650,
+      "left": 100,
       "attrs": {}
     }
   ],
-  "connections": [],
+  "connections": [
+    ["esp32:11", "rfidEntry:MOSI", "green", []],
+    ["esp32:13", "rfidEntry:MISO", "blue", []],
+    ["esp32:12", "rfidEntry:SCK", "orange", []],
+    ["esp32:10", "rfidEntry:SDA", "purple", []],
+    ["esp32:15", "rfidEntry:RST", "yellow", []],
+    ["esp32:3V3.1", "rfidEntry:3.3V", "red", []],
+    ["esp32:GND.1", "rfidEntry:GND", "black", []],
+
+    ["esp32:11", "rfidExit:MOSI", "green", []],
+    ["esp32:13", "rfidExit:MISO", "blue", []],
+    ["esp32:12", "rfidExit:SCK", "orange", []],
+    ["esp32:9", "rfidExit:SDA", "purple", []],
+    ["esp32:15", "rfidExit:RST", "yellow", []],
+    ["esp32:3V3.1", "rfidExit:3.3V", "red", []],
+    ["esp32:GND.1", "rfidExit:GND", "black", []],
+
+    ["esp32:16", "doorServo:PWM", "orange", []],
+    ["esp32:5V", "doorServo:V+", "red", []],
+    ["esp32:GND.1", "doorServo:GND", "black", []],
+
+    ["esp32:4", "pirRoom1:OUT", "green", []],
+    ["esp32:3V3.1", "pirRoom1:VCC", "red", []],
+    ["esp32:GND.1", "pirRoom1:GND", "black", []],
+    ["esp32:6", "lightRoom1:A", "yellow", []],
+    ["lightRoom1:C", "esp32:GND.1", "black", []],
+
+    ["esp32:5", "pirRoom2:OUT", "green", []],
+    ["esp32:3V3.1", "pirRoom2:VCC", "red", []],
+    ["esp32:GND.1", "pirRoom2:GND", "black", []],
+    ["esp32:7", "lightRoom2:A", "yellow", []],
+    ["lightRoom2:C", "esp32:GND.1", "black", []],
+
+    ["esp32:11", "sdcard:DI", "green", []],
+    ["esp32:13", "sdcard:DO", "blue", []],
+    ["esp32:12", "sdcard:SCK", "orange", []],
+    ["esp32:14", "sdcard:CS", "purple", []],
+    ["esp32:3V3.1", "sdcard:VCC", "red", []],
+    ["esp32:GND.1", "sdcard:GND", "black", []],
+
+    ["esp32:8", "lcd:SDA", "green", []],
+    ["esp32:18", "lcd:SCL", "blue", []],
+    ["esp32:5V", "lcd:VCC", "red", []],
+    ["esp32:GND.1", "lcd:GND", "black", []],
+
+    ["esp32:1", "keypad:R1", "green", []],
+    ["esp32:2", "keypad:R2", "green", []],
+    ["esp32:3", "keypad:R3", "green", []],
+    ["esp32:21", "keypad:R4", "green", []],
+    ["esp32:39", "keypad:C1", "blue", []],
+    ["esp32:40", "keypad:C2", "blue", []],
+    ["esp32:41", "keypad:C3", "blue", []],
+    ["esp32:42", "keypad:C4", "blue", []],
+
+    ["esp32:17", "buzzer:2", "purple", []],
+    ["esp32:GND.1", "buzzer:1", "black", []]
+  ],
   "dependencies": {}
 }
