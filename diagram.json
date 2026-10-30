@@ -7,77 +7,88 @@
     {
       "type": "board-esp32-s3-devkitc-1",
       "id": "esp32",
-      "top": 200,
+      "top": 280,
       "left": 450,
       "attrs": {}
     },
     {
       "type": "board-mfrc522",
       "id": "rfidEntry",
-      "top": -130,
-      "left": -420,
-      "attrs": { "uid": "01:02:03:04" }
+      "top": 80,
+      "left": -220,
+      "attrs": {
+        "uid": "01:02:03:04"
+      }
     },
     {
       "type": "board-mfrc522",
       "id": "rfidExit",
-      "top": 240,
-      "left": -420,
-      "attrs": { "uid": "11:22:33:44" }
+      "top": 340,
+      "left": -220,
+      "attrs": {
+        "uid": "11:22:33:44"
+      }
     },
     {
       "type": "wokwi-servo",
       "id": "doorServo",
-      "top": 570,
-      "left": -420,
-      "attrs": { "horn": "single" }
+      "top": 600,
+      "left": -180,
+      "attrs": {}
     },
     {
       "type": "wokwi-pir-motion-sensor",
       "id": "pirRoom1",
-      "top": -450,
-      "left": 350,
-      "attrs": { "delayTime": "5" }
+      "top": -220,
+      "left": 390,
+      "attrs": {}
     },
     {
       "type": "wokwi-led",
       "id": "lightRoom1",
-      "top": -450,
+      "top": -190,
       "left": 680,
       "attrs": {
         "color": "yellow",
-        "label": "ROOM 1 LIGHT"
+        "label": "ROOM 1"
       }
     },
     {
       "type": "wokwi-pir-motion-sensor",
       "id": "pirRoom2",
-      "top": 100,
-      "left": 1130,
-      "attrs": { "delayTime": "5" }
+      "top": 140,
+      "left": 1010,
+      "attrs": {}
     },
     {
       "type": "wokwi-led",
       "id": "lightRoom2",
-      "top": 400,
-      "left": 1130,
+      "top": 440,
+      "left": 1010,
       "attrs": {
         "color": "yellow",
-        "label": "ROOM 2 LIGHT"
+        "label": "ROOM 2"
       }
     },
     {
       "type": "wokwi-microsd-card",
       "id": "sdcard",
-      "top": 900,
-      "left": -250,
+      "top": 850,
+      "left": -180,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "buzzer",
+      "top": 690,
+      "left": 300,
       "attrs": {}
     },
     {
       "type": "wokwi-lcd1602",
       "id": "lcd",
-      "top": 880,
-      "left": 350,
+      "top": 860,
+      "left": 450,
       "attrs": {
         "pins": "i2c",
         "i2cAddress": "0x27"
@@ -86,74 +97,67 @@
     {
       "type": "wokwi-membrane-keypad",
       "id": "keypad",
-      "top": 880,
-      "left": 900,
-      "attrs": {}
-    },
-    {
-      "type": "wokwi-buzzer",
-      "id": "buzzer",
-      "top": 650,
-      "left": 100,
+      "top": 850,
+      "left": 920,
       "attrs": {}
     }
   ],
   "connections": [
-    ["esp32:11", "rfidEntry:MOSI", "green", []],
-    ["esp32:13", "rfidEntry:MISO", "blue", []],
-    ["esp32:12", "rfidEntry:SCK", "orange", []],
-    ["esp32:10", "rfidEntry:SDA", "purple", []],
-    ["esp32:15", "rfidEntry:RST", "yellow", []],
-    ["esp32:3V3.1", "rfidEntry:3.3V", "red", []],
-    ["esp32:GND.1", "rfidEntry:GND", "black", []],
+    ["rfidEntry:MOSI", "esp32:11", "green", ["h80", "v0"]],
+    ["rfidEntry:MISO", "esp32:13", "blue", ["h90", "v0"]],
+    ["rfidEntry:SCK", "esp32:12", "orange", ["h100", "v0"]],
+    ["rfidEntry:SDA", "esp32:10", "purple", ["h110", "v0"]],
+    ["rfidEntry:RST", "esp32:15", "yellow", ["h120", "v0"]],
+    ["rfidEntry:3.3V", "esp32:3V3.1", "red", ["h130", "v0"]],
+    ["rfidEntry:GND", "esp32:GND.1", "black", ["h140", "v0"]],
 
-    ["esp32:11", "rfidExit:MOSI", "green", []],
-    ["esp32:13", "rfidExit:MISO", "blue", []],
-    ["esp32:12", "rfidExit:SCK", "orange", []],
-    ["esp32:9", "rfidExit:SDA", "purple", []],
-    ["esp32:15", "rfidExit:RST", "yellow", []],
-    ["esp32:3V3.1", "rfidExit:3.3V", "red", []],
-    ["esp32:GND.1", "rfidExit:GND", "black", []],
+    ["rfidExit:MOSI", "esp32:11", "green", ["h80", "v0"]],
+    ["rfidExit:MISO", "esp32:13", "blue", ["h90", "v0"]],
+    ["rfidExit:SCK", "esp32:12", "orange", ["h100", "v0"]],
+    ["rfidExit:SDA", "esp32:9", "purple", ["h110", "v0"]],
+    ["rfidExit:RST", "esp32:15", "yellow", ["h120", "v0"]],
+    ["rfidExit:3.3V", "esp32:3V3.1", "red", ["h130", "v0"]],
+    ["rfidExit:GND", "esp32:GND.1", "black", ["h140", "v0"]],
 
-    ["esp32:16", "doorServo:PWM", "orange", []],
-    ["esp32:5V", "doorServo:V+", "red", []],
-    ["esp32:GND.1", "doorServo:GND", "black", []],
+    ["doorServo:PWM", "esp32:16", "orange", ["h90", "v0"]],
+    ["doorServo:V+", "esp32:5V", "red", ["h100", "v0"]],
+    ["doorServo:GND", "esp32:GND.1", "black", ["h110", "v0"]],
 
-    ["esp32:4", "pirRoom1:OUT", "green", []],
-    ["esp32:3V3.1", "pirRoom1:VCC", "red", []],
-    ["esp32:GND.1", "pirRoom1:GND", "black", []],
-    ["esp32:6", "lightRoom1:A", "yellow", []],
-    ["lightRoom1:C", "esp32:GND.1", "black", []],
+    ["pirRoom1:OUT", "esp32:4", "green", ["v100", "h0"]],
+    ["pirRoom1:VCC", "esp32:3V3.1", "red", ["v110", "h0"]],
+    ["pirRoom1:GND", "esp32:GND.1", "black", ["v120", "h0"]],
+    ["lightRoom1:A", "esp32:6", "yellow", ["v130", "h0"]],
+    ["lightRoom1:C", "esp32:GND.1", "black", ["v140", "h0"]],
 
-    ["esp32:5", "pirRoom2:OUT", "green", []],
-    ["esp32:3V3.1", "pirRoom2:VCC", "red", []],
-    ["esp32:GND.1", "pirRoom2:GND", "black", []],
-    ["esp32:7", "lightRoom2:A", "yellow", []],
-    ["lightRoom2:C", "esp32:GND.1", "black", []],
+    ["pirRoom2:OUT", "esp32:5", "green", ["h-100", "v0"]],
+    ["pirRoom2:VCC", "esp32:3V3.1", "red", ["h-110", "v0"]],
+    ["pirRoom2:GND", "esp32:GND.1", "black", ["h-120", "v0"]],
+    ["lightRoom2:A", "esp32:7", "yellow", ["h-130", "v0"]],
+    ["lightRoom2:C", "esp32:GND.1", "black", ["h-140", "v0"]],
 
-    ["esp32:11", "sdcard:DI", "green", []],
-    ["esp32:13", "sdcard:DO", "blue", []],
-    ["esp32:12", "sdcard:SCK", "orange", []],
-    ["esp32:14", "sdcard:CS", "purple", []],
-    ["esp32:3V3.1", "sdcard:VCC", "red", []],
-    ["esp32:GND.1", "sdcard:GND", "black", []],
+    ["sdcard:DI", "esp32:11", "green", ["v-120", "h0"]],
+    ["sdcard:DO", "esp32:13", "blue", ["v-130", "h0"]],
+    ["sdcard:SCK", "esp32:12", "orange", ["v-140", "h0"]],
+    ["sdcard:CS", "esp32:14", "purple", ["v-150", "h0"]],
+    ["sdcard:VCC", "esp32:3V3.1", "red", ["v-160", "h0"]],
+    ["sdcard:GND", "esp32:GND.1", "black", ["v-170", "h0"]],
 
-    ["esp32:8", "lcd:SDA", "green", []],
-    ["esp32:18", "lcd:SCL", "blue", []],
-    ["esp32:5V", "lcd:VCC", "red", []],
-    ["esp32:GND.1", "lcd:GND", "black", []],
+    ["buzzer:2", "esp32:17", "purple", ["v-80", "h0"]],
+    ["buzzer:1", "esp32:GND.1", "black", ["v-90", "h0"]],
 
-    ["esp32:1", "keypad:R1", "green", []],
-    ["esp32:2", "keypad:R2", "green", []],
-    ["esp32:3", "keypad:R3", "green", []],
-    ["esp32:21", "keypad:R4", "green", []],
-    ["esp32:39", "keypad:C1", "blue", []],
-    ["esp32:40", "keypad:C2", "blue", []],
-    ["esp32:41", "keypad:C3", "blue", []],
-    ["esp32:42", "keypad:C4", "blue", []],
+    ["lcd:SDA", "esp32:8", "green", ["v-100", "h0"]],
+    ["lcd:SCL", "esp32:18", "blue", ["v-110", "h0"]],
+    ["lcd:VCC", "esp32:5V", "red", ["v-120", "h0"]],
+    ["lcd:GND", "esp32:GND.1", "black", ["v-130", "h0"]],
 
-    ["esp32:17", "buzzer:2", "purple", []],
-    ["esp32:GND.1", "buzzer:1", "black", []]
+    ["keypad:R1", "esp32:1", "green", ["v-100", "h0"]],
+    ["keypad:R2", "esp32:2", "green", ["v-110", "h0"]],
+    ["keypad:R3", "esp32:3", "green", ["v-120", "h0"]],
+    ["keypad:R4", "esp32:21", "green", ["v-130", "h0"]],
+    ["keypad:C1", "esp32:39", "blue", ["v-140", "h0"]],
+    ["keypad:C2", "esp32:40", "blue", ["v-150", "h0"]],
+    ["keypad:C3", "esp32:41", "blue", ["v-160", "h0"]],
+    ["keypad:C4", "esp32:42", "blue", ["v-170", "h0"]]
   ],
   "dependencies": {}
 }
