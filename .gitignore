@@ -11,4 +11,6 @@ sdkconfig.old
 sdkconfig.*
 !sdkconfig.defaults
 .DS_Store
- 
+
+build-s3/
+work/

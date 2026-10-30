@@ -1,5 +1,4 @@
-
 [wokwi]
 version = 1
-firmware = "build/Embedded_Project.bin"
-elf = "build/Embedded_Project.elf"
+firmware = "build-s3/Embedded_Project.bin"
+elf = "build-s3/Embedded_Project.elf"
